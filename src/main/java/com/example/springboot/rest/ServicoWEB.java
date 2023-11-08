@@ -1,14 +1,17 @@
 package com.example.springboot.rest;
 
+import java.time.LocalDateTime;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.springboot.BookResourceAssembler;
-import com.example.springboot.rest.dto.BookResource;
+import com.example.springboot.LivroResourceAssembler;
+import com.example.springboot.rest.dto.Livro;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -16,12 +19,17 @@ import lombok.AllArgsConstructor;
 @RequestMapping("v1/fake/dados")
 public class ServicoWEB {
 
-    private final BookResourceAssembler bookResourceAssembler;
+    private final LivroResourceAssembler livroResourceAssembler;
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/livro", method = RequestMethod.GET)
-    public BookResource getById() {
-        return bookResourceAssembler.toResource();
+    public Livro gerarDadosLivro(HttpServletResponse response) {
+    	
+    	Livro resource = livroResourceAssembler.toResource();
+    	
+    	response.addHeader("Processamento", LocalDateTime.now().toString());
+    	System.out.println("--:" + LocalDateTime.now() + " - " + resource);
+		return resource;
     }
 
 }

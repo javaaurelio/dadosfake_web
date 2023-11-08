@@ -30,7 +30,6 @@ public class ServicoWEB {
 
 		Livro resource = livroResourceAssembler.toResource();
 
-		response.addHeader("versao", livroResourceAssembler.getVersao());
 		response.addHeader("Processamento", LocalDateTime.now().toString());
 		System.out.println("--:" + LocalDateTime.now() + " - " + resource);
 		return resource;

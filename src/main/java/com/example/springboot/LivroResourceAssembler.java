@@ -14,9 +14,6 @@ import lombok.Getter;
 @Getter
 public class LivroResourceAssembler {
 
-	@Value("${versao}")
-    public String versao;
-	
     public LivroResourceAssembler() {
     }
 

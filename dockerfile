@@ -1,10 +1,10 @@
 from openjdk:18-alpine
-CMD ["echo", "Construcao iniciada...."]
+RUN echo 'Contrucao iniciada....'
 MAINTAINER javaaurelio/dadosfake_web
 COPY ./target/demo-0.0.1-SNAPSHOT.jar /app/demo-0.0.1-SNAPSHOT.jar
-CMD ["echo", "copia OK...."]
+RUN echo "Copy com sucesso..."
 WORKDIR /app
 ARG versao
 ENTRYPOINT ["java", "-jar", "demo-0.0.1-SNAPSHOT.jar", "-Dversao=$versao"]
-CMD ["paramentro:", "-Dversao=$versao"]
+RUN echo 'Cmd argumento: ' -Dversao=$versao
 EXPOSE 8080

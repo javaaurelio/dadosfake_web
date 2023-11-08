@@ -6,6 +6,6 @@ RUN echo Copy com sucesso...
 WORKDIR /app
 ARG versao
 ENV versao_env=$versao
-ENTRYPOINT ["java", "-jar", "demo-0.0.1-SNAPSHOT.jar -Dversao=$versao_env"]
+ENTRYPOINT ["java", "-jar", "demo-0.0.1-SNAPSHOT.jar -Dversao=", "echo ${versao}"]
 RUN echo Cmd argumento:  -Dversao=$versao
 EXPOSE 8080

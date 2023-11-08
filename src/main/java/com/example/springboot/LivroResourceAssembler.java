@@ -2,14 +2,21 @@ package com.example.springboot;
 
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.example.springboot.rest.dto.Livro;
 import com.github.javafaker.Faker;
 
+import lombok.Getter;
+
 @Component
+@Getter
 public class LivroResourceAssembler {
 
+	@Value("${versao}")
+    public String versao;
+	
     public LivroResourceAssembler() {
     }
 

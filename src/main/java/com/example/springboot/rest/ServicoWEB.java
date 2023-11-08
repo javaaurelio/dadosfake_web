@@ -3,7 +3,9 @@ package com.example.springboot.rest;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -20,9 +22,6 @@ import lombok.AllArgsConstructor;
 @RequestMapping("v1/fake/dados")
 public class ServicoWEB {
 
-	@Value("${versao}")
-	private String versao;
-
 	private final LivroResourceAssembler livroResourceAssembler;
 
 	@ResponseStatus(HttpStatus.OK)
@@ -31,7 +30,7 @@ public class ServicoWEB {
 
 		Livro resource = livroResourceAssembler.toResource();
 
-		response.addHeader("versao", versao);
+		response.addHeader("versao", livroResourceAssembler.getVersao());
 		response.addHeader("Processamento", LocalDateTime.now().toString());
 		System.out.println("--:" + LocalDateTime.now() + " - " + resource);
 		return resource;

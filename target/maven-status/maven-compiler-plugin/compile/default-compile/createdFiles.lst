@@ -1,0 +1,6 @@
+com\example\springboot\rest\dto\Book.class
+com\example\springboot\rest\dto\Book$BookBuilder.class
+com\example\springboot\BookResourceAssembler.class
+com\example\springboot\Application.class
+com\example\springboot\rest\dto\BookResource.class
+com\example\springboot\rest\ServicoWEB.class

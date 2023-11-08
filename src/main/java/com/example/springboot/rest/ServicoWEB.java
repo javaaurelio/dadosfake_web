@@ -2,6 +2,7 @@ package com.example.springboot.rest;
 
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,17 +20,21 @@ import lombok.AllArgsConstructor;
 @RequestMapping("v1/fake/dados")
 public class ServicoWEB {
 
-    private final LivroResourceAssembler livroResourceAssembler;
+	@Value("${versao}")
+	private String versao;
 
-    @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/livro", method = RequestMethod.GET)
-    public Livro gerarDadosLivro(HttpServletResponse response) {
-    	
-    	Livro resource = livroResourceAssembler.toResource();
-    	
-    	response.addHeader("Processamento", LocalDateTime.now().toString());
-    	System.out.println("--:" + LocalDateTime.now() + " - " + resource);
+	private final LivroResourceAssembler livroResourceAssembler;
+
+	@ResponseStatus(HttpStatus.OK)
+	@RequestMapping(value = "/livro", method = RequestMethod.GET)
+	public Livro gerarDadosLivro(HttpServletResponse response) {
+
+		Livro resource = livroResourceAssembler.toResource();
+
+		response.addHeader("versao", versao);
+		response.addHeader("Processamento", LocalDateTime.now().toString());
+		System.out.println("--:" + LocalDateTime.now() + " - " + resource);
 		return resource;
-    }
+	}
 
 }

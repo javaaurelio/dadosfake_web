@@ -1,2 +1,6 @@
 .classpath
 .project
+/target/classes
+/target/maven-status
+/target/generated-sources
+/target/maven-archiver
